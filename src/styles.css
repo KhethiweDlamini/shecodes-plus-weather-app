@@ -1,6 +1,6 @@
 body {
   background: #f9f7fe;
-  font-family: "Roboto", sans-serif;
+  font-family: "Chakra Petch", sans-serif;
 }
 
 a {
@@ -29,6 +29,7 @@ header {
   padding: 20px;
   width: 77%;
   border-radius: 6px;
+  font-family: "Chakra Petch", sans-serif;
 }
 
 .search-button {
@@ -40,6 +41,7 @@ header {
   padding: 20px;
   line-height: 1;
   border-radius: 5px;
+  font-family: "Chakra Petch", sans-serif;
 }
 
 main {
