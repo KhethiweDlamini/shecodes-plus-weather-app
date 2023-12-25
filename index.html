@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="src/styles.css" />
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <title>My weather application</title>
   </head>
   <body>
@@ -33,15 +34,18 @@
       <main>
         <div class="current-weather">
           <div>
-            <h1 class="current-city" id="current-city">Paris</h1>
+            <h1 class="current-city" id="current-city"></h1>
             <p class="current-details">
-              <span id="current-date"></span>, moderate rain <br />
-              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+              <span id="current-date"></span>
+              <span id="current-condition"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
             </p>
           </div>
           <div class="current-temperature">
-            <span class="current-temperature-icon">☀️</span
-            ><span class="current-temperature-value" id="temp-value">24</span
+            <span class="current-temperature-icon"></span>
+            <span class="current-temperature-value" id="temp-value"></span
             ><span class="current-temperature-unit">°C</span>
           </div>
         </div>
