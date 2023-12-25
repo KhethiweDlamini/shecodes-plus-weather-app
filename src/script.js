@@ -5,18 +5,19 @@ function refreshWeather(response) {
   let currentWindSpeed = document.querySelector("#wind-speed");
   let currentTemperature = document.querySelector("#temp-value");
   let temperature = response.data.temperature.current;
-
   let currentTime = document.querySelector("#current-date");
   let cityDate = new Date(response.data.time * 1000);
-
   let iconUrl = response.data.condition.icon_url;
+  let currentIcon = `<img src="${iconUrl}" />`;
+  let iconElement = document.querySelector("#icon");
 
   currentCity.innerHTML = response.data.city;
   currentTime.innerHTML = formatDate(cityDate);
   currentCondition.innerHTML = `${response.data.condition.description}`;
   currentHumidity.innerHTML = `${response.data.temperature.humidity}%`;
-  currentTemperature.innerHTML = Math.round(temperature);
   currentWindSpeed.innerHTML = `${response.data.wind.speed} km/h`;
+  currentTemperature.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = currentIcon;
 }
 
 function formatDate(cityDate) {

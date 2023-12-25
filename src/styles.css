@@ -24,7 +24,7 @@ header {
 .search-input {
   background-color: #e8d3e245;
   border: none;
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(162, 157, 169, 0.4);
   font-size: 16px;
   padding: 20px;
   width: 80%;
@@ -35,7 +35,7 @@ header {
 .search-button {
   margin-left: 5px;
   font-size: 16px;
-  background-color: rgb(120, 23, 105);
+  background-color: rgb(73, 12, 139);
   color: white;
   border: none;
   padding: 20px;
@@ -75,9 +75,9 @@ main {
 
 .current-temperature-icon {
   position: relative;
-  top: -8px;
+  top: 20px;
   font-size: 40px;
-  margin-right: 10px;
+  margin-right: -15px;
 }
 
 .current-temperature-value {
