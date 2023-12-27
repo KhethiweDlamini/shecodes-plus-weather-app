@@ -95,18 +95,16 @@ main {
 .weather-forecast {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px 20px 10px;
 }
 .day-container {
   text-align: center;
-  margin: 0 auto;
-}
-.forecast-day,
-.forecast-temp,
-.forecast-icon {
   margin: 10px auto;
 }
-.forecast-temp strong {
+.forecast-day {
+  margin: 0 auto;
+}
+
+.min-temp strong {
   padding-right: 8px;
 }
 footer {

@@ -43,44 +43,57 @@ function formatDate(cityDate) {
   return `${weekDays[day]} ${hours}:${minutes},`;
 }
 
-function getCityUrl(city) {
+function displayForecast(forecast) {
+  let dayValues = [1, 2, 3, 4, 5];
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let forecastHtml = "";
+
+  dayValues.forEach(function (value) {
+    let forecastDate = new Date(forecast.data.daily[value].time * 1000);
+    let forecastDay = weekDays[forecastDate.getDay()];
+    let dayIcon = forecast.data.daily[value].condition.icon_url;
+    let minTemp = Math.round(forecast.data.daily[value].temperature.minimum);
+    let maxTemp = Math.round(forecast.data.daily[value].temperature.maximum);
+    forecastHtml += `
+    <div class="day-container">
+      <div class="forecast-day">${forecastDay}</div>
+      <div class="forecast-icon"><img src="${dayIcon}"/></div>
+      <div class="forecast-temp">
+        <span class = "min-temp"><strong>${minTemp}&deg</strong></span> 
+        <span class = "max-temp">${maxTemp}&deg</span>
+      </div>
+    </div>`;
+  });
+
+  let weatherForecast = document.querySelector("#forecast-container");
+  weatherForecast.innerHTML = forecastHtml;
+}
+
+function getWeatherReport(city) {
   let apiKey = "ct3573bb77o0c90643baf9f5552218f7";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiForecast = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
   axios.get(apiUrl).then(refreshWeather);
+  axios.get(apiForecast).then(displayForecast);
 }
 
 function searchWeather(event) {
   event.preventDefault();
   let searchCityElement = document.querySelector("#search-input");
 
-  getCityUrl(searchCityElement.value);
+  getWeatherReport(searchCityElement.value);
 }
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchWeather);
 
-getCityUrl("Pretoria");
-
-function displayForecast() {
-  let weatherForecast = document.querySelector("#forecast-container");
-
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-    <div class="day-container">
-      <div class="forecast-day">${day}</div>
-      <div class="forecast-icon">🌦️</div>
-      <div class="forecast-temp">
-        <strong>15&deg</strong> 20&deg
-      </div>
-    </div>`;
-  });
-
-  weatherForecast.innerHTML = forecastHtml;
-}
-
-displayForecast();
+getWeatherReport("Pretoria");
