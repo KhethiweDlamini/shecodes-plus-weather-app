@@ -10,6 +10,7 @@ a {
 .weather-app {
   background: white;
   max-width: 600px;
+  max-height: 500px;
   margin: 60px auto;
   padding: 40px;
   border-radius: 10px;
@@ -18,7 +19,7 @@ a {
 
 header {
   border-bottom: 1px solid #f9f7fe;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .search-input {
