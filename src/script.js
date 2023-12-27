@@ -43,34 +43,32 @@ function formatDate(cityDate) {
   return `${weekDays[day]} ${hours}:${minutes},`;
 }
 
-function displayForecast(forecast) {
-  let dayValues = [1, 2, 3, 4, 5];
-  let weekDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+function formatDay(timestamp) {
+  let forecastDate = new Date(timestamp * 1000);
+  let weekDays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+  return weekDays[forecastDate.getDay()];
+}
+function displayForecast(response) {
   let forecastHtml = "";
 
-  dayValues.forEach(function (value) {
-    let forecastDate = new Date(forecast.data.daily[value].time * 1000);
-    let forecastDay = weekDays[forecastDate.getDay()];
-    let dayIcon = forecast.data.daily[value].condition.icon_url;
-    let minTemp = Math.round(forecast.data.daily[value].temperature.minimum);
-    let maxTemp = Math.round(forecast.data.daily[value].temperature.maximum);
-    forecastHtml += `
-    <div class="day-container">
-      <div class="forecast-day">${forecastDay}</div>
-      <div class="forecast-icon"><img src="${dayIcon}"/></div>
-      <div class="forecast-temp">
-        <span class = "min-temp"><strong>${minTemp}&deg</strong></span> 
-        <span class = "max-temp">${maxTemp}&deg</span>
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      let forecastDay = formatDay(day.time);
+      let dayIcon = day.condition.icon_url;
+      let minTemp = Math.round(day.temperature.minimum);
+      let maxTemp = Math.round(day.temperature.maximum);
+
+      forecastHtml += `
+        <div class="day-container">
+          <div class="forecast-day">${forecastDay}</div>
+          <div ><img src="${dayIcon}" class="forecast-icon"/></div>
+          <div class="forecast-temp">
+            <span class = "max-temp"><strong>${maxTemp}&deg</strong></span> 
+            <span class = "min-temp">${minTemp}&deg</span>
       </div>
     </div>`;
+    }
   });
 
   let weatherForecast = document.querySelector("#forecast-container");

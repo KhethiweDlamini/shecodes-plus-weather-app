@@ -98,13 +98,13 @@ main {
 }
 .day-container {
   text-align: center;
-  margin: 10px auto;
+  margin-top: 40px;
 }
-.forecast-day {
-  margin: 0 auto;
+.forecast-icon {
+  max-width: 80%;
 }
 
-.min-temp strong {
+.max-temp strong {
   padding-right: 8px;
 }
 footer {
